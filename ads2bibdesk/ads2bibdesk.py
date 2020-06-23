@@ -505,7 +505,7 @@ def notify(title, subtitle, desc, alert_sound='Frog'):
         center.deliverNotification_(notification)
         notification.dealloc() 
     
-    except ExplicitException:
+    except Exception:
         
         try:
 
@@ -521,7 +521,7 @@ def notify(title, subtitle, desc, alert_sound='Frog'):
                         shell=True,stdout=subprocess.PIPE, stderr=subprocess.PIPE).communicate()
 
 
-        except ExplicitException:
+        except Exception:
             pass
 
 if  __name__ == '__main__':
