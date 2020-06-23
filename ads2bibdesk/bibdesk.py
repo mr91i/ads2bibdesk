@@ -149,7 +149,12 @@ class BibDesk(object):
 def has_annotationss(f):
     """
     """
-    return subprocess.Popen(
-        "strings {} | grep  -E 'Contents[ ]{{0,1}}\('".format(f),
+    number_of_saving = subprocess.Popen(
+        'strings \"{}\" | grep -c \"%%EOF\"'.format(f),
         shell=True, stdout=subprocess.PIPE,
-        stderr=open('/dev/null', 'w')).stdout.read() != b''     # b''!=u'' in Python 3    
+        stderr=open('/dev/null', 'w')).stdout.read()
+    return int(number_of_saving) >= 2
+#    return subprocess.Popen(
+#        "strings {} | grep  -E 'Contents[ ]{{0,1}}\('".format(f),
+#        shell=True, stdout=subprocess.PIPE,
+#        stderr=open('/dev/null', 'w')).stdout.read() != b''     # b''!=u'' in Python 3    
